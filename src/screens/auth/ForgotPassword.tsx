@@ -1,16 +1,14 @@
+
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { LogoSmall } from '../../components/LogoSmall';
 import Btn from '../../components/Btn';
-import { Eye, EyeOff } from 'lucide-react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-export default function SignIn() {
+export default function ForgotPassword() {
   const navigation = useNavigation();
-  const [showPassword, setShowPassword] = useState(false);
   const [credentials, setCredentials] = useState({
     email: '',
-    password: '',
   });
   return (
     <View style={styles.container}>
@@ -19,9 +17,9 @@ export default function SignIn() {
       </View>
       <View style={styles.formContainer}>
         <View style={styles.formHeaderContainer}>
-          <Text style={styles.formHeaderText1}>Hi!</Text>
-          <Text style={styles.formHeaderText1}>Welcome</Text>
-          <Text>Please enter your credentials.</Text>
+          <Text style={styles.formHeaderText1}>Oh No!</Text>
+          <Text style={styles.formHeaderText1}>I forgot</Text>
+          <Text>Enter your email address to reset your password.</Text>
         </View>
         <View style={styles.formInputContaner}>
           <TextInput
@@ -29,55 +27,18 @@ export default function SignIn() {
             inputMode="email"
             autoComplete="email"
             style={styles.formInput}
-            placeholder="juandelacruz@email.com or juandelacruz"
+            placeholder="juandelacruz@email.com"
             onChangeText={text => {
               setCredentials({
                 ...credentials,
-                email: text, // Update the email field
+                email: text,
               });
             }}
           />
-          <View style={{ position: 'relative' }}>
-            <TextInput
-              textContentType="password"
-              autoComplete="password"
-              style={styles.formInput}
-              secureTextEntry={!showPassword} // Toggle visibility
-              placeholder="********"
-              onChangeText={text => {
-                setCredentials({
-                  ...credentials,
-                  password: text,
-                });
-              }}
-            />
-            {showPassword ? (
-              <Eye
-                onPress={() => {
-                  console.log(showPassword);
-                  setShowPassword(!showPassword);
-                }}
-                style={{ position: 'absolute', right: 2, top: 12 }}
-              />
-            ) : (
-              <EyeOff
-                onPress={() => {
-                  console.log(showPassword);
-                  setShowPassword(!showPassword);
-                }}
-                style={{ position: 'absolute', right: 2, top: 12 }}
-              />
-            )}
-          </View>
-          <Pressable onPress={() =>{navigation.navigate('ForgotPassword')}}>
-            <Text style={{ textAlign: 'right' }}>Forgot Password?</Text>
-          </Pressable>
         </View>
         <View>
-          <Btn title="sign in" style={{ marginTop: 40, marginBottom: 10 }} />
-          <Text style={{ textAlign: 'right' }}>
-            Don't have an account? Sign up
-          </Text>
+          <Btn title="submit" style={{ marginTop: 40, marginBottom: 10 }} />
+          <Text style={{ textAlign: 'right' }}>Don't have an account?</Text>
           <Pressable
             onPress={() => {
               navigation.navigate('SignUp');
