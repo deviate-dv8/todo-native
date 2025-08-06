@@ -23,7 +23,7 @@ export default function SignUp() {
         <View style={styles.formHeaderContainer}>
           <Text style={styles.formHeaderText1}>Hello!</Text>
           <Text style={styles.formHeaderText1}>Welcome</Text>
-          <Text>Let's create you account</Text>
+          <Text>Let's create you account.</Text>
         </View>
         <View style={styles.formInputContaner}>
           <TextInput

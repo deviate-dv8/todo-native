@@ -21,7 +21,7 @@ export default function SignIn() {
         <View style={styles.formHeaderContainer}>
           <Text style={styles.formHeaderText1}>Hi!</Text>
           <Text style={styles.formHeaderText1}>Welcome</Text>
-          <Text>Please enter your credentials</Text>
+          <Text>Please enter your credentials.</Text>
         </View>
         <View style={styles.formInputContaner}>
           <TextInput
