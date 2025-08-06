@@ -5,12 +5,14 @@ import { Eye, EyeOff } from 'lucide-react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-export default function SignIn() {
+export default function SignUp() {
   const navigation = useNavigation();
   const [showPassword, setShowPassword] = useState(false);
   const [credentials, setCredentials] = useState({
+    username: '',
     email: '',
     password: '',
+    confirm_password: '',
   });
   return (
     <View style={styles.container}>
@@ -19,35 +21,59 @@ export default function SignIn() {
       </View>
       <View style={styles.formContainer}>
         <View style={styles.formHeaderContainer}>
-          <Text style={styles.formHeaderText1}>Hi!</Text>
+          <Text style={styles.formHeaderText1}>Hello!</Text>
           <Text style={styles.formHeaderText1}>Welcome</Text>
-          <Text>Please enter your credentials</Text>
+          <Text>Let's create you account</Text>
         </View>
         <View style={styles.formInputContaner}>
+          <TextInput
+            textContentType="username"
+            autoComplete="username"
+            style={styles.formInput}
+            placeholder="juandelacruz"
+            onChangeText={text => {
+              setCredentials({
+                ...credentials,
+                username: text,
+              });
+            }}
+          />
           <TextInput
             textContentType="emailAddress"
             inputMode="email"
             autoComplete="email"
             style={styles.formInput}
-            placeholder="juandelacruz@email.com or juandelacruz"
+            placeholder="juandelacruz@email.com"
             onChangeText={text => {
               setCredentials({
                 ...credentials,
-                email: text, // Update the email field
+                email: text,
+              });
+            }}
+          />
+          <TextInput
+            textContentType="password"
+            autoComplete="password"
+            style={styles.formInput}
+            secureTextEntry={!showPassword}
+            placeholder="********"
+            onChangeText={text => {
+              setCredentials({
+                ...credentials,
+                password: text,
               });
             }}
           />
           <View style={{ position: 'relative' }}>
             <TextInput
-              textContentType="password"
-              autoComplete="password"
+              textContentType="none"
               style={styles.formInput}
-              secureTextEntry={!showPassword} // Toggle visibility
+              secureTextEntry={!showPassword}
               placeholder="********"
               onChangeText={text => {
                 setCredentials({
                   ...credentials,
-                  password: text,
+                  confirm_password: text,
                 });
               }}
             />
@@ -69,24 +95,19 @@ export default function SignIn() {
               />
             )}
           </View>
-          <Pressable>
-            <Text style={{ textAlign: 'right' }}>Forgot Password?</Text>
-          </Pressable>
         </View>
         <View>
-          <Btn title="sign in" style={{ marginTop: 40, marginBottom: 10 }} />
-          <Text style={{ textAlign: 'right' }}>
-            Don't have an account? Sign up
-          </Text>
+          <Btn title="sign up" style={{ marginTop: 40, marginBottom: 10 }} />
+          <Text style={{ textAlign: 'right' }}>Already have an account?</Text>
           <Pressable
             onPress={() => {
-              navigation.navigate('SignUp');
+              navigation.navigate('SignIn');
             }}
           >
             <Text
               style={{ textAlign: 'right', fontWeight: 'bold', fontSize: 16 }}
             >
-              sign up
+              sign in
             </Text>
           </Pressable>
         </View>
